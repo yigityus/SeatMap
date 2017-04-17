@@ -11,6 +11,8 @@ import {
 } from 'react-native-router-flux';
 const store = configureStore();
 
+let unsubscribe = store.subscribe(() => console.log('store.getState ', store.getState()))
+
 export default class App extends React.Component {
   render() {
     return (

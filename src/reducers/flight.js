@@ -4,25 +4,30 @@
 import {SET_FLIGHT} from '../actions/flight'
 // Set initial state
 const initialState = {
-  flightNumber: '200'
+  flight: {
+
+  }
 };
 
-export default function flight(state = initialState, action) {
+export default function flightReducer(state = initialState, action) {
 
-  console.log('123')
-  console.log(action)
-  console.log(state)
+  console.log('reducers state', state)
+  console.log('reducers action', action)
+  console.log('reducers action.flight', action.flight)
 
-  newState = Object.assign({}, {state}, flight);
-
-  console.log(newState);
-  console.log(action.flight);
+  console.log('reducers new state',
+  {
+      ...state,
+      flight: action.flight,
+  }
+  )
 
   switch (action.type) {
     case SET_FLIGHT :
-      console.log('action case SET_FLIGHT')
-      console.log(SET_FLIGHT)
-      return newState;
+      return {
+          ...state,
+        flight: action.flight,
+      };
 
       // ...other actions
 
