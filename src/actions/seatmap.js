@@ -13,11 +13,12 @@ export function fetchSeatmap(payload) {
 
   const {flightNumber, flightDate, flightDeparture} = payload
 
-  params = Object.keys(payload).map(function(k) {
+  const params = Object.keys(payload).map(function(k) {
     return encodeURIComponent(k) + '=' + encodeURIComponent(payload[k])
   }).join('&')
 
-  url = 'http://10.26.15.68:8085/seats?' + params
+  url = 'http://192.168.1.102:3000/db'
+  //url = 'http://10.26.15.68:8085/seats?' + params
 
   console.log(url)
 
@@ -25,13 +26,19 @@ export function fetchSeatmap(payload) {
       .then((res) => res.json())
       .then((resJson) => {
 
+    //sleep(3000);
+
     console.log('resJson ', resJson)
 
     dispatch({
       type: FETCH_SEATMAP,
-      seatmap: resJson,
+      seatMapRow: resJson,
     })
   }).catch((error) => {
         console.error(error);
       });
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 }

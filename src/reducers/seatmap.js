@@ -4,18 +4,20 @@
 import {FETCH_SEATMAP} from '../actions/seatmap'
 // Set initial state
 const initialState = {
-  seatmap: {},
+  seatMapRow: {},
 };
 
 export default function seatmapReducer(state = initialState, action) {
 
-  const {seatmap} = action
+  const {seatMapRow} = action
+
+  console.log('seatMapRow ', seatMapRow)
 
   switch (action.type) {
     case FETCH_SEATMAP :
       return {
         ...state,
-        seatmap,
+        seatMapRow,
       };
 
       // ...other actions

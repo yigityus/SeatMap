@@ -11,7 +11,7 @@ function mapStateToProps(state) {
   console.log('SeatmapContainer ', state)
 
   return {
-    seatmap: state.seatmap.seatmap,
+    seatMapRow: state.seatmap.seatMapRow,
   }
 }
 

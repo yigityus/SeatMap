@@ -3,7 +3,8 @@
  */
 import React, {Component} from 'react';
 import { Text } from 'react-native';
-import { Container, Content, Spinner, Button } from 'native-base';
+import { Container, Content, Spinner, Button} from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class Seatmap extends Component {
 
@@ -15,6 +16,7 @@ export default class Seatmap extends Component {
 
     this.state = {
       loading: true,
+      seatMapRow: [],
     }
   }
 
@@ -29,7 +31,8 @@ export default class Seatmap extends Component {
       flightDeparture: 'IST',
     }).then(() => {
       this.setState({
-        loading: false
+        loading: false,
+        seatMapRow: this.props.seatMapRow.seatMapRow,
       })
     }).catch((err) => {
       console.log(err)
@@ -38,39 +41,42 @@ export default class Seatmap extends Component {
 
   render() {
     let spinner = this.state.loading ? <Spinner /> : null
+    let seatMapRow = this.state.seatMapRow ? this.state.seatMapRow : null
+
+    console.log('seatMapRow ', seatMapRow)
+
+    if (seatMapRow) {
+      seatMapRow = this.renderRows(seatMapRow)
+    }
+
+
     return (
         <Container>
           <Content>
             {spinner}
-            <Text>Hello!</Text>
-            <Text>{this.state.loading.toString()}</Text>
-            <Text>{this.props.seatmap.id}</Text>
-            <Text>{this.props.seatmap.content}</Text>
-            <Text>{this.props.flightNumber}</Text>
-            <Text>{this.props.flightDeparture}</Text>
-            <Text>{this.props.flightDate}</Text>
-            <Text>{this.props.seatmap.cabinType}</Text>
-
-            <Button onPress={() => this.setState({loading:false})}>
-              <Text> Submit </Text>
-            </Button>
-
-            <Button onPress={() => this.props.fetchSeatmap({
-              flightNumber: this.props.flightNumber,
-              flightDate: this.props.flightDate,
-              flightDeparture: this.props.flightDeparture,
-            }).then(() => {
-              this.setState({
-                loading: false
-              });
-            })}>
-              <Text> Fetch </Text>
-            </Button>
-
-
-
+            {seatMapRow}
           </Content>
         </Container>
     );
+  }
+
+  renderRows(seatMapRow) {
+    rows = seatMapRow.map((row)=> {
+      console.log(row)
+      console.log(row.rowNumber)
+
+      let columns = this.renderColumns(row.cabinElement);
+      return <Row key={row.rowNumber}><Col key={row.rowNumber}><Text>{row.rowNumber}</Text></Col>{columns}</Row>
+    })
+    return rows
+  }
+
+  renderColumns(cabinElements) {
+    columns = cabinElements.map((column)=> {
+      let type = column.type;
+      if(!type) type = 'null'
+      return <Col><Text style={{fontSize:6}}>{type}</Text></Col>
+    })
+    return columns
   }
 }

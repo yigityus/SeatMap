@@ -9,23 +9,31 @@ import { Text } from 'react-native';
 export default class Flight extends React.Component {
 
   onPress = () => {
+
+    console.log('onPress')
+    console.log(this.state)
+    console.log('onPress')
+
     const flight = {
-      flightNumber: '1',
-      flightDate: '2017-04-18',
-      flightDeparture: 'IST',
-/*
       flightNumber: this.state.flightNumber,
       flightDate: this.state.flightDate,
       flightDeparture: this.state.flightDeparture,
-*/
+    }
+    this.props.setFlight(flight);
+  }
+
+  onLucky = () => {
+    console.log('onLucky')
+    const flight = {
+      flightNumber: '1',
+      flightDate: new Date().toJSON().slice(0, 10),
+      flightDeparture: 'IST',
     }
 
     this.props.setFlight(flight);
 
-    console.log('onPress flight', flight)
-    console.log('onPress this.props', this.props)
-
   }
+
 
   render() {
     return (
@@ -49,9 +57,10 @@ export default class Flight extends React.Component {
               <Text> Submit </Text>
             </Button>
 
-            <Button dark onPress={this.props.pop}>
-              <Text> Submit </Text>
+            <Button block outline light bordered onPress={this.onLucky}>
+              <Text> Im feeling lucky </Text>
             </Button>
+
 
             <Text> {this.props.flightNumber} </Text>
             <Text> {this.props.flightDate} </Text>
