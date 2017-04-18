@@ -9,6 +9,8 @@ import {
   Scene,
   Router,
 } from 'react-native-router-flux';
+
+
 const store = configureStore();
 
 let unsubscribe = store.subscribe(() => console.log('store.getState ', store.getState()))

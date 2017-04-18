@@ -5,7 +5,6 @@ import {SET_FLIGHT} from '../actions/flight'
 // Set initial state
 const initialState = {
   flight: {
-
   }
 };
 

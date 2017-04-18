@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import { applyMiddleware, compose, createStore } from 'redux';
 import rootReducer from '../reducers';
+import devToolsEnhancer from 'remote-redux-devtools';
 
 // Load middleware
 let middleware = [
@@ -26,5 +27,5 @@ export default function configureStore() {
   // Init redux store (using the given redux & middleware)
   return store = compose(
       applyMiddleware(...middleware),
-  )(createStore)(rootReducer);
+  )(createStore)(rootReducer, devToolsEnhancer());
 }
