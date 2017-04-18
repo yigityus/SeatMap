@@ -4,28 +4,21 @@
 import {SET_FLIGHT} from '../actions/flight'
 // Set initial state
 const initialState = {
-  flight: {
-  }
+  flightNumber: '',
+  flightDate: '',
+  flightDeparture: '',
+
 };
 
 export default function flightReducer(state = initialState, action) {
 
-  console.log('reducers state', state)
-  console.log('reducers action', action)
-  console.log('reducers action.flight', action.flight)
-
-  console.log('reducers new state',
-  {
-      ...state,
-      flight: action.flight,
-  }
-  )
-
   switch (action.type) {
     case SET_FLIGHT :
       return {
-          ...state,
-        flight: action.flight,
+        ...state,
+        flightNumber: action.flightNumber,
+        flightDate: action.flightDate,
+        flightDeparture: action.flightDeparture,
       };
 
       // ...other actions
@@ -34,5 +27,4 @@ export default function flightReducer(state = initialState, action) {
       console.log('default case')
       return state;
   }
-
 }

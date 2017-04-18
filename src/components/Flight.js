@@ -9,12 +9,15 @@ import { Text } from 'react-native';
 export default class Flight extends React.Component {
 
   onPress = () => {
-    console.log('onPress this.state', this.state)
-    console.log('onPress this.props', this.props)
     const flight = {
+      flightNumber: '1',
+      flightDate: '2017-04-18',
+      flightDeparture: 'IST',
+/*
       flightNumber: this.state.flightNumber,
       flightDate: this.state.flightDate,
       flightDeparture: this.state.flightDeparture,
+*/
     }
 
     this.props.setFlight(flight);
@@ -31,24 +34,28 @@ export default class Flight extends React.Component {
             <Form>
               <Item inlineLabel>
                 <Label>Flight Number</Label>
-                <Input onChangeText={(flightNumber) => this.setState({flightNumber})} />
+                <Input onChangeText={(flightNumber) => this.setState({flightNumber: 1})} />
               </Item>
               <Item inlineLabel>
                 <Label>Flight Departure</Label>
-                <Input onChangeText={(flightDeparture) => this.setState({flightDeparture})} />
+                <Input onChangeText={(flightDeparture) => this.setState({flightDeparture: 'IST'})} />
               </Item>
               <Item inlineLabel last>
                 <Label>Flight Date</Label>
-                <Input onChangeText={(flightDate) => this.setState({flightDate})} />
+                <Input onChangeText={(flightDate) => this.setState({flightDate: '2017-04-18'})} />
               </Item>
             </Form>
             <Button block onPress={this.onPress}>
               <Text> Submit </Text>
             </Button>
 
-            <Text> {this.props.flight.flightNumber} </Text>
-            <Text> {this.props.flight.flightDate} </Text>
-            <Text> {this.props.flight.flightDeparture} </Text>
+            <Button dark onPress={this.props.pop}>
+              <Text> Submit </Text>
+            </Button>
+
+            <Text> {this.props.flightNumber} </Text>
+            <Text> {this.props.flightDate} </Text>
+            <Text> {this.props.flightDeparture} </Text>
 
           </Content>
         </Container>

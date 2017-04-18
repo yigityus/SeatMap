@@ -3,9 +3,11 @@
  */
 import { combineReducers } from 'redux';
 import flight from './flight';
+import seatmap from './seatmap';
 
 const rootReducer = combineReducers({
-  flight
+  flight,
+  seatmap
 });
 
 export default rootReducer;

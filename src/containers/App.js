@@ -5,11 +5,11 @@ import React, {Component} from 'react';
 import { Provider } from 'react-redux';
 import configureStore from '../store';
 import FlightContainer from '../containers/FlightContainer'
+import SeatmapContainer from '../containers/SeatmapContainer'
 import {
   Scene,
   Router,
 } from 'react-native-router-flux';
-
 
 const store = configureStore();
 
@@ -20,7 +20,8 @@ export default class App extends React.Component {
     return (
         <Provider store={store}>
           <Router hideNavBar>
-            <Scene key="flight" component={FlightContainer} initial />
+            <Scene key="flight" component={FlightContainer} initial/>
+            <Scene key="seatmap" component={SeatmapContainer}  />
           </Router>
         </Provider>
     );

@@ -4,21 +4,19 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Flight from '../components/Flight';
-import { setFlight } from '../actions/flight';
+import { setFlight, pop } from '../actions/flight';
+import { fetchSeatmap } from '../actions/seatmap';
 
 function mapStateToProps(state) {
-
-  const {flight} = state
-
-  console.log('flight', flight)
-  console.log('state ', state)
-  console.log('state.flight ', state.flight)
-
-  return flight
+  return {
+    flightNumber: state.flight.flightNumber,
+    flightDate: state.flight.flightDate,
+    flightDeparture: state.flight.flightDeparture,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setFlight}, dispatch);
+  return bindActionCreators({setFlight, pop, fetchSeatmap}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Flight);
